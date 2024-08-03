@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>timesheets-page.html</title>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="60">
+    <!-- Определение градиента -->
+    <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:blue;stop-opacity:1"/>
+            <stop offset="100%" style="stop-color:green;stop-opacity:1"/>
+        </linearGradient>
+    </defs>
+    <!-- Прямоугольник с градиентом -->
+    <rect width="100%" height="60" fill="url(#grad1)"/>
+    <!-- Текст -->
+    <text x="10" y="40" font-family="Arial, sans-serif" font-size="24" fill="white">Предприятие - Таблицы</text>
+</svg>
+<h2 style="font-size: 32px;">Таблица: Запись учета рабочего времени</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Идентификатор записи</th>
+        <th>&nbsp&nbsp&nbsp&nbsp</th>
+        <th>Проект</th>
+        <th>&nbsp&nbsp&nbsp&nbsp</th>
+        <th>Перейти к Проекту</th>
+        <th>&nbsp&nbsp&nbsp&nbsp</th>
+        <th>Минут потрачено</th>
+        <th>&nbsp&nbsp&nbsp&nbsp</th>
+        <th>Дата записи</th>
+        <th>&nbsp&nbsp&nbsp&nbsp</th>
+        <th>Перейти к записи</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="timesheet : ${timesheets}">
+        <td><span th:text="${timesheet.id}"></span></td>
+        <td><span>&nbsp&nbsp&nbsp</span></td>
+        <td><span th:text="${timesheet.projectName}"></span></td>
+        <td><span>&nbsp&nbsp&nbsp</span></td>
+        <!--         <td>-->
+        <!--        <a th:href="@{'/home/projects/{id}'(id=${timesheet.projectId})}">перейти к проекту</a>-->
+        <!--         <a th:if="${timesheet.projectId != null}" th:href="@{'/home/projects/' + ${timesheet.projectId}}">перейти к-->
+        <!--        проекту</a><span th:if="${timesheet.projectId == null}">нет проекта</span>-->
+        <!--       </td>-->
+        <td>
+            <a th:href="@{'/home/projects/' + ${timesheet.projectId}}" th:if="${timesheet.projectId != null}">перейти к
+                проекту</a>
+            <span th:if="${timesheet.projectId == null}">нет проекта</span>
+        </td>
+        <td><span th:text="${timesheet.minutes}"></span></td>
+        <td><span>&nbsp&nbsp&nbsp</span></td>
+        <td><span th:text="${timesheet.createdAt}"></span></td>
+        <td><span>&nbsp&nbsp&nbsp</span></td>
+        <td><a th:if="${timesheet.id != null}" th:href="@{'/home/timesheets/{id}'(id=${timesheet.id})}">перейти к
+            записи </a> <span th:if="${timesheet.id == null}">нет записи</span></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h2 style="font-size: 32px;">Сотрудники: Исполнители проектов</h2>
+<br>
+<br> <a href="/home/employees">перейти в Список</a>
+<br>
+<br>
+<br>
+<br>
+</body>
+
+</html>
