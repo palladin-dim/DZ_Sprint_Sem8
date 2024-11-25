@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ru.gb</groupId>
-    <artifactId>timesheet</artifactId>
+    <artifactId>DZ_Spring_Sem8</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <properties>
         <java.version>21</java.version>
